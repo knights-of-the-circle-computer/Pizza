@@ -47,7 +47,7 @@ public class pizza {
          for ( j = 0; j < l; j++ ) 
             pizza[i][j] = info[i + 4].charAt(j);
       }
-      
+      // yok artık lebron james
       toString( pizza );
       
       // output format:" sliceCount \n r1 c1 r2 c2 "
