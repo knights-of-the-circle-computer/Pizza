@@ -1,0 +1,55 @@
+public class pizza {
+   
+   public static void toString( char[][] array ) {
+      int i , j;
+      
+      for( i = 0; i < array.length; i++) {
+         for( j =0; j < array[0].length; j++)
+            System.out.print( array[i][j]);
+         System.out.println();
+      }
+   }      
+      
+   
+   public static void main( String[] args ) {
+      
+      Scanner scan = new Scanner(System.in);
+       
+      // variables
+      char[][] pizza;
+      
+      String[] info;
+      int h, l, max, min;
+      int i, j;
+      
+      ArrayList<String> output = new ArrayList<String>();
+      int sliceCount;
+      int r1, c1, r2, c2;
+      int sliceShape = 0;
+      int tCount, mCount;
+      
+      //program code
+      System.out.println("Enter info about the pizza");
+      info = scan.nextLine().split(" "); // ya burda bo?lukla vericem inputu
+      
+      //while ( ! scan.hasNextInt()) ya da böyle ayr? ayr? alcam
+         //list.add( scan.next() );
+      
+      h = Integer.parseInt( info[0] );
+      l = Integer.parseInt ( info[1] );
+      min = Integer.parseInt ( info[2] );
+      max = Integer.parseInt ( info[3] );
+      //System.out.print(info[ info.length - 1]);
+      pizza = new char[h][l];
+      
+      
+      for( i = 0; i < h ; i++){
+         for ( j = 0; j < l; j++ ) 
+            pizza[i][j] = info[i + 4].charAt(j);
+      }
+      
+      toString( pizza );
+      
+      // output format:" sliceCount \n r1 c1 r2 c2 "
+      }
+   }
