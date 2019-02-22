@@ -1,0 +1,27 @@
+import java.util.*;
+ import java.io.*;
+
+public class PizzaInputTry
+{
+
+   public static void main( String[] args)
+   {
+      Scanner scan = new Scanner( System.in);
+
+      // constants
+
+      // variables
+      
+      List<String> pizza = new ArrayList<String>();
+      ReadFileOne read = new ReadFileOne();
+      
+
+      // program code
+      pizza = read.readFile("b_small.in");
+      System.out.println(pizza);
+      
+   }
+   
+  
+
+}
