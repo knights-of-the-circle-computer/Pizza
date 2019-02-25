@@ -1,0 +1,193 @@
+import java.util.ArrayList;
+import java.util.*;
+import java.io.*;
+
+public class pizza {
+   
+   static int maxCells;
+   static int heigth;
+   static int length;
+   static boolean[][] taken;
+   static char[][] pizza;
+   
+   public static void toString( char[][] array ) {
+      int i , j;
+      
+      for( i = 0; i < array.length; i++) {
+         for( j =0; j < array[0].length; j++)
+            System.out.print( array[i][j]);
+         System.out.println();
+      }
+   }
+   
+   public static boolean find( int row, int column ) {
+      char main;
+      int tCount, mCount = 0;
+      Slice slice;
+      int cell = 1;
+      int mainCount = 1;
+      
+      if ( pizza[row][column] == 'T' ) 
+         main = 'T';
+         
+      else 
+         main = 'M';
+        
+      
+      if( taken[row][column])
+         return false;
+      
+      
+      
+      for (int i = 1; i < maxCells; i++) {
+         
+         if( row + i >= heigth || taken[row + i][column] )
+            break;
+         if ( pizza[row + i][column] != main ) {
+            slice = new Slice(row, row + i, column, column, maxCells);
+            while ( row + i >= row){
+               taken[row + i][column] = true;
+               i--;
+            }
+            return true;
+         }
+         else {
+            cell++;
+            mainCount++;
+         }
+         if (mainCount == maxCells)
+            break;
+      }
+      
+      for(int i = 1; i < maxCells; i++) {
+         if( column + i > length || taken[row][column + i] )
+            break;
+         if ( pizza[row][column + i] != main ) {
+            slice = new Slice(row, row, column, column + i, maxCells);
+            while ( column + i >= column){
+               taken[row][column + i] = true;
+               i--;
+            }
+            return true;
+         }
+         else {
+            cell++;
+            mainCount++;
+         }
+         if (mainCount == maxCells)
+            break;
+      }
+      
+      for (int i = 1; i < maxCells; i++) {
+         
+         if( row - i < 0 || taken[row - i][column] )
+            break;
+         if ( pizza[row - i][column] != main ) {
+            slice = new Slice(row - i, row, column, column, maxCells);
+            while ( row - i <= row){
+               taken[row - i][column] = true;
+               i--;
+            }
+            return true;
+         }
+         else {
+            cell++;
+            mainCount++;
+         }
+         if (mainCount == maxCells)
+            break;
+      }
+      
+      for( int i = 1; i < maxCells; i++) {
+         if( column - i < 0 || taken[row][column - i] )
+            break;
+         if ( pizza[row][column - i] != main ) {
+            slice = new Slice(row, row, column - i, column, maxCells);
+            while ( column - i <= column){
+               taken[row][column - i] = true;
+               i--;
+            }
+            return true;
+         }
+         else {
+            cell++;
+            mainCount++;
+         }
+         if (mainCount == maxCells)
+            break;
+      }
+      
+      return false;
+      
+   }
+   
+      
+   
+   public static void main( String[] args ) {
+      
+      Scanner scan = new Scanner(System.in);
+       
+      // variables
+      int row, col;
+      int j;
+      heigth = 0;
+      length = 0;
+      int min = 0;
+      maxCells = 0;
+      String ing= "";
+      j = 0;
+      String[] info;
+        
+      //program code
+      System.out.println("Enter info about the pizza");
+      info = scan.nextLine().split(" "); // ya burda bo?lukla vericem inputu
+      
+      //while ( ! scan.hasNextInt()) ya da böyle ayr? ayr? alcam
+         //list.add( scan.next() );
+      
+      heigth = Integer.parseInt( info[0] );
+      length = Integer.parseInt ( info[1] );
+      min = Integer.parseInt ( info[2] );
+      maxCells = Integer.parseInt ( info[3] );
+      //System.out.print(info[ info.length - 1]);
+      pizza = new char[heigth][length];
+      
+      
+      for( int i = 0; i < heigth ; i++){
+         for ( j = 0; j < length; j++ ) 
+            pizza[i][j] = info[i + 4].charAt(j);
+      }
+      
+      toString( pizza );
+      /*
+      
+      System.out.println("Enter info about the pizza");
+      List<String> pizza = new ArrayList<String>();
+      ReadFileOne read = new ReadFileOne();
+      
+
+      // program code
+      pizza = read.readFile("smalldata.txt");
+      System.out.println(pizza);
+      
+      */
+      
+      taken = new boolean[heigth][length];
+      
+   
+      while( true ) {
+         
+         row = (int)(Math.random()* heigth);
+         col = (int) (Math.random()* length);
+         find(row, col);
+         
+      }
+         
+      
+       
+      
+      // output format:" sliceCount \n r1 c1 r2 c2 "
+      
+      
+      
+   }
