@@ -1,0 +1,70 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.io.*;
+
+public class pizza
+{
+   public static void toString( char[][] array ) {
+      int i , j;
+      
+      for( i = 0; i < array.length; i++) {
+         for( j =0; j < array[0].length; j++)
+            System.out.print( array[i][j]);
+         System.out.println();
+      }
+   }
+   
+   public static void main( String[] args ) {
+      
+      Scanner scan = new Scanner(System.in);
+      
+      // variables
+      char[][] pizza;      
+      String[] info;
+      int h, l, max, min,j;
+      String ing;
+      Scanner x;
+      
+      h = 0;
+      l = 0;
+      min = 0;
+      max = 0;
+      ing = "";
+      j = 0;
+           
+      System.out.println("Enter info about the pizza");
+      
+      try
+      {
+         x = new Scanner( new File( "bigdata.txt"));
+
+         h = x.nextInt();
+         l = x.nextInt();
+         min = x.nextInt();
+         max = x.nextInt();
+         pizza = new char[h][l];
+            
+         while ( x.hasNext() && j < h)
+         {
+            ing = x.next();
+            for ( int i = 0; i < l; i++)
+            {
+               pizza[i][j] = ing.charAt(i);
+            }
+         }
+         x.close();
+         
+         for( int i = 0; i < pizza.length; i++)
+         {
+            System.out.print( pizza[i]);
+         }
+      }
+
+      catch(Exception e){
+         System.out.println("File cannot be found.");
+         
+      }
+
+   }
+   
+}
