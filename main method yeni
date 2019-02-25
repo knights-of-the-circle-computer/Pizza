@@ -1,0 +1,52 @@
+import java.util.*;
+ import java.io.*;
+
+/**
+ * Pizza Kesme Denemesi 1
+ * @author Cansu
+ * @version 23/02/2019
+ */ 
+public class PizzaInputTry
+{
+
+   public static void main( String[] args)
+   {
+      Scanner scan = new Scanner( System.in);
+
+      // constants
+
+      // variables
+      
+      List<String> pizza = new ArrayList<String>();
+      ReadFileOne read = new ReadFileOne();
+      String[] splittedVersion = new String[4];
+      int rows;
+      int columns;
+      int max;
+      int min;
+      char[][] ingredients;
+      
+
+      // program code
+      pizza = read.readFile("b_small.in");
+      System.out.println(pizza);
+      
+      splittedVersion = pizza.get(0).split(" ");
+      
+      rows = Integer.parseInt(splittedVersion[0]);
+      columns = Integer.parseInt(splittedVersion[1]);
+      min = Integer.parseInt(splittedVersion[2]);
+      max = Integer.parseInt(splittedVersion[3]);
+      
+      
+      ingredients = new char[columns][rows];
+      for (int j = 0; j < rows; j ++)
+      {
+          for(int i = 0; i < columns; i++)
+          {
+              ingredients[i][j] = pizza.get(j + 1).charAt(i);
+          }
+      }
+
+   }
+}
