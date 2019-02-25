@@ -1,0 +1,95 @@
+public static boolean find( int row, int column ) {
+      char main;
+      Slice slice;
+      int cell = 1;
+      int mainCount = 1;
+      
+      if ( pizza[row][column] == 'T' ) 
+         main = 'T';
+      else 
+         main = 'M';
+        
+      
+      if( taken[row][column])
+         return false;
+            
+      
+      for (int i = 1; i < maxCells; i++) {
+         
+         if( row + i > length || taken[row + i][column] )
+            break;
+         if ( pizza[row + i][column] != main ) {
+            slice = new Slice(row, row + i, column, column, maxCells);
+            while ( row + i >= row){
+               taken[row + i][column] = true;
+               i--;
+            }
+            return true;
+         }
+         else {
+            cell++;
+            mainCount++;
+         }
+         if (mainCount == maxCells)
+            break;
+      }
+      
+      for(int i = 1; i < maxCells; i++) {
+         if( column + i > heigth || taken[row][column + i] )
+            break;
+         if ( pizza[row][column + i] != main ) {
+            slice = new Slice(row, row, column, column + i, maxCells);
+            while ( column + i >= column){
+               taken[row][column + i] = true;
+               i--;
+            }
+            return true;
+         }
+         else {
+            cell++;
+            mainCount++;
+         }
+         if (mainCount == maxCells)
+            break;
+      }
+      
+      for (int i = 1; i < maxCells; i++) {
+         
+         if( row - i < 0 || taken[row - i][column] )
+            break;
+         if ( pizza[row - i][column] != main ) {
+            slice = new Slice(row - i, row, column, column, maxCells);
+            while ( row - i <= row){
+               taken[row - i][column] = true;
+               i--;
+            }
+            return true;
+         }
+         else {
+            cell++;
+            mainCount++;
+         }
+         if (mainCount == maxCells)
+            break;
+      }
+      
+      for( int i = 1; i < maxCells; i++) {
+         if( column - i < 0 || taken[row][column - i] )
+            break;
+         if ( pizza[row][column - i] != main ) {
+            slice = new Slice(row, row, column - i, column, maxCells);
+            while ( column - i <= column){
+               taken[row][column - i] = true;
+               i--;
+            }
+            return true;
+         }
+         else {
+            cell++;
+            mainCount++;
+         }
+         if (mainCount == maxCells)
+            break;
+      }
+         
+  }
