@@ -7,7 +7,7 @@ public class Slice
    private boolean vertical;
    private int tCount;
    private int mCount;
-   private static int[] coordinate;
+   private static int[][] coordinate;
    private String str;
    private static int sliceCount = 0;
    private int sliceNo;
