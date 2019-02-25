@@ -91,5 +91,7 @@ public static boolean find( int row, int column ) {
          if (mainCount == maxCells)
             break;
       }
+      
+      return false;
          
   }
