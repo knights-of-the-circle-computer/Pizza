@@ -1,0 +1,53 @@
+import java.util.ArrayList;
+
+public class Slice
+{
+   //properties
+   private int maxSize;
+   private boolean vertical;
+   private int tCount;
+   private int mCount;
+   private static int[] coordinate;
+   private String str;
+   private static int sliceCount = 0;
+   private int sliceNo;
+   
+   //constructors
+   public Slice( int r1, int r2, int c1, int c2, int maxSize)
+   {
+      coordinate = new int[4];
+      coordinate[0] = r1; 
+      coordinate[1] = c1;
+      coordinate[2] = r2;
+      coordinate[3] = c2;
+
+      this.maxSize = maxSize;
+      tCount = 0;
+      mCount = 0;
+
+      if ( c1 == c2 )
+         vertical = true;
+      if ( r1 == r2 )
+         vertical = false;
+      
+      sliceCount = sliceCount + 1;
+      sliceNo = sliceCount;
+   }
+   
+   //methods
+   public String toString()
+   {
+      return coordinate[0] + " " + coordinate[1] + " " + coordinate[2] + " " + coordinate[3];
+   }
+   
+   public boolean isVertical()
+   {
+      return vertical;
+   }
+   
+   public int getSliceNo()
+   {
+      return sliceNo;
+   }
+      
+}
